@@ -1,0 +1,916 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习笔记,HTTP协议," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="橙风沐雨's" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://7xr9ql.com1.z0.glb.clouddn.com/444.png?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="这周工作中遇到一个奇葩问题，公司IIS服务器下Log日志记录的JSON被转成了乱码，觉得很奇葩是因为我同一套WebService部署了很多遍，为什么其他服务下日志记录的好好的，你就不行，后来仔细观察下，妈个鸡，这不是乱码，他只不过把JSON中一些中文和特殊字符给我转成了Unicode格式，那么问题又回来了，谁让你瞎他瞄转换的(╯°口°)╯(┴—┴！我细细的吸了一口水，发现事情并不简单（背后肯定有着">
+<meta name="keywords" content="学习笔记,HTTP协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈HTTP协议中的Content-Type">
+<meta property="og:url" content="http://yoursite.com/2016/03/12/浅谈HTTP协议中的Content-Type/index.html">
+<meta property="og:site_name" content="橙风沐雨&#39;s">
+<meta property="og:description" content="这周工作中遇到一个奇葩问题，公司IIS服务器下Log日志记录的JSON被转成了乱码，觉得很奇葩是因为我同一套WebService部署了很多遍，为什么其他服务下日志记录的好好的，你就不行，后来仔细观察下，妈个鸡，这不是乱码，他只不过把JSON中一些中文和特殊字符给我转成了Unicode格式，那么问题又回来了，谁让你瞎他瞄转换的(╯°口°)╯(┴—┴！我细细的吸了一口水，发现事情并不简单（背后肯定有着">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160309162858.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160309182535.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160309182551.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160311170618.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/234.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/123.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/231.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/post.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/987546.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/1111.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/12.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/21.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/22.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/31.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/32.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/41.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/42.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/43.png">
+<meta property="og:updated_time" content="2018-02-05T04:17:18.070Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈HTTP协议中的Content-Type">
+<meta name="twitter:description" content="这周工作中遇到一个奇葩问题，公司IIS服务器下Log日志记录的JSON被转成了乱码，觉得很奇葩是因为我同一套WebService部署了很多遍，为什么其他服务下日志记录的好好的，你就不行，后来仔细观察下，妈个鸡，这不是乱码，他只不过把JSON中一些中文和特殊字符给我转成了Unicode格式，那么问题又回来了，谁让你瞎他瞄转换的(╯°口°)╯(┴—┴！我细细的吸了一口水，发现事情并不简单（背后肯定有着">
+<meta name="twitter:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160309162858.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6221277831146505000,
+      author: 'ROOT'
+    }
+  };
+</script>
+
+  <title> 浅谈HTTP协议中的Content-Type | 橙风沐雨's </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?8ded7e135cea0a8c5779fe298f8b33b2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">橙风沐雨's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">天空不只在我们头顶，她一直延伸至大地。                                               当我们从地上抬起脚，就像是走在天空里</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-log">
+          <a href="/log" rel="section">
+            
+              <i class="menu-item-icon fa fa-log fa-fw"></i> <br />
+            
+            日志
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                浅谈HTTP协议中的Content-Type
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-12T21:45:54+08:00" content="2016-03-12">
+              2016-03-12
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/12/浅谈HTTP协议中的Content-Type/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/12/浅谈HTTP协议中的Content-Type/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>这周工作中遇到一个奇葩问题，公司IIS服务器下Log日志记录的JSON被转成了乱码，觉得很奇葩是因为我同一套WebService部署了很多遍，为什么其他服务下日志记录的好好的，你就不行，后来仔细观察下，妈个鸡，这不是乱码，他只不过把JSON中一些中文和特殊字符给我转成了Unicode格式，那么问题又回来了，谁让你瞎他瞄转换的(╯°口°)╯(┴—┴！我细细的吸了一口水，发现事情并不简单（背后肯定有着肮脏的PY交易）。最后的原因你肯定也猜到了，就是HTTP协议搞的鬼，既然如此，就再整理一下HTTP协议吧  </p>
+</blockquote>
+<h2 id="协议概述"><a href="#协议概述" class="headerlink" title="协议概述"></a>协议概述</h2><p>HTTP协议是互联网应用最为广泛的网络协议，最初由W3C(万维网协会)发布制定，目前的标准版本是1.1。协议内容非常简单（扶额思考），最初是为了定义客户端与服务端进行交互的标准格式，但由于其移植性太强，现在广泛应用于各种Web应用前后台交互<br>HTTP协议位于TCP/IP协议簇的应用层，直接依赖于处于传输层的TCP协议，所以和TCP类似，处理端对端（进程对进程）通信</p>
+<p>在HTTP 0.9和1.0版本使用的非持续连接，而在1.1后改为持续连接，意味着不必为每个web对象创建一个新的连接，一个连接可以传送多个对象<br><a id="more"></a><br>以下是wiki对HTTP协议的概述</p>
+<blockquote>
+<p>HTTP是一个客户端终端（用户）和服务器端（网站）请求和应答的标准（TCP）。通过使用Web浏览器、网络爬虫或者其它的工具，客户端发起一个HTTP请求到服务器上指定端口（默认端口为80）。我们称这个客户端为用户代理程序（user agent）。应答的服务器上存储着一些资源，比如HTML文件和图像。我们称这个应答服务器为源服务器（origin server）。在用户代理和源服务器中间可能存在多个“中间层”，比如代理服务器、网关或者隧道（tunnel）。</p>
+<p>尽管TCP/IP协议是互联网上最流行的应用，HTTP协议中，并没有规定必须使用它或它支持的层。事实上，HTTP可以在任何互联网协议上，或其他网络上实现。HTTP假定其下层协议提供可靠的传输。因此，任何能够提供这种保证的协议都可以被其使用。因此也就是其在TCP/IP协议族使用TCP作为其传输层。</p>
+<p>通常，由HTTP客户端发起一个请求，创建一个到服务器指定端口（默认是80端口）的TCP连接。HTTP服务器则在那个端口监听客户端的请求。一旦收到请求，服务器会向客户端返回一个状态，比如”HTTP/1.1 200 OK”，以及返回的内容，如请求的文件、错误消息、或者其它信息。</p>
+</blockquote>
+<p>其协议内容分为<strong>请求（Request）</strong>及<strong>响应（Response）</strong>，但两者的格式都是类似的，所以以下按照格式逐级说明</p>
+<h2 id="协议格式"><a href="#协议格式" class="headerlink" title="协议格式"></a>协议格式</h2><p>HTTP协议格式如下：</p>
+<ol>
+<li><p><strong>行</strong>: 包括请求行已经响应行</p>
+<ol>
+<li><p>请求行：包括一个请求最基本的信息，请求方式、请求路径(可选)、以及遵循的协议版本</p>
+<pre><code>格式：[请求方法]SPS[请求路径(可选)]SPS[协议版本]
+示例：GET /path1/path2/fileName.html HTTP/1.1
+</code></pre></li>
+<li><p>响应行：包含响应状态以及服务端HTTP版本协议</p>
+<pre><code>格式：[协议版本]SPS[状态码]SPS[状态描述]
+示例：HTTP/1.1 304 Not Modified
+</code></pre></li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><p><strong>头</strong>: 包括通用头、请求头、响应头和实体头，代表请求（响应）的各种属性（部分是浏览器、代理主动添加的），以键值队形式保存</p>
+<pre><code>格式：[属性名称]:[属性值]
+示例: Connection: keep-alive
+     Accept-Encoding: gzip, deflate, sdch
+     Accept-Language: zh-CN,zh;q=0.8
+</code></pre></li>
+<li><p><strong>（空行）</strong> </p>
+</li>
+<li><p><strong>其它消息体（可选）</strong>：通常是PostData</p>
+<h2 id="行"><a href="#行" class="headerlink" title="行"></a>行</h2></li>
+</ol>
+<h3 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h3><p>这里我要唠叨一下题外话，虽然请求（Request）这个词叫做请求。从请求发起者的角度来看其含义不仅仅是请求，其实她只是表示一个动作的发起，可以是请求，可以是强迫，可以是要求。而如果站在响应方的角度来看，你请求，我不响应你，你要求，我不答应你，这时候也不叫请求了，叫做乞求。所以这个命名是略有歧义的，如果W3C跟我一样是个深度命名强迫症患者，肯定不会起这个名字，但现在也没法改名，因为改名字是很难<a href="https://zh.wikipedia.org/wiki/%E5%90%91%E4%B8%8B%E5%85%BC%E5%AE%B9" title="wiki-向下兼容" target="_blank" rel="noopener">向下兼容</a>的（自己开发中经常遇到名字不准确强行改名，结果踩了一堆雷）</p>
+<p><em>言归正传</em>，请求看起来就像一个<strong>对某某说一个流行动词</strong>，为什么咋么说呢？  </p>
+<p>首先，请求头的请求方式就相当于这个动词，像<strong>下面给你吃</strong>，而请求路径就是某某了；  </p>
+<p>其次，为什么是某某呢，因为这个某某你可能根本就认识啊，什么？认识？我的朋友啊，知道名字就算认识了吗，别忘了你知道人家的<strong>名字</strong>，连<strong>姓</strong>什么都不知道，你这样天真，怎么找的到女朋友！  </p>
+<p>再次，为什么是<strong>流行词</strong>，因为版本号啊，版本高的听的懂版本低的话，但是反之就不行，你对外婆说下面给你吃和对女友说下面给你吃，结果能一样吗？就相当于你和同龄人是一个版本，你们有着共同词汇，但是外婆属于初始版本，你虽然可以理解外婆的话，但外婆不能全部理解你的话（以及行为）(苦笑)</p>
+<h4 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h4><p>HTTP规定的<em>请求方法</em>一共有8种，同时规定HTTP服务器至少应该事先GET和HEAD方法，其它方法都是可选的。最常用的是POST和GET。此外，请求方法是可扩展的</p>
+<p>具体请见以下wiki引用</p>
+<blockquote>
+<p>HTTP/1.1协议中共定义了八种方法（也叫“动作”）来以不同方式操作指定的资源：</p>
+<blockquote>
+<p>OPTIONS：这个方法可使服务器传回该资源所支持的所有HTTP请求方法。用’*’来代替资源名称，向Web服务器发送OPTIONS请求，可以测试服务器功能是否正常运作。<br>HEAD：与GET方法一样，都是向服务器发出指定资源的请求。只不过服务器将不传回资源的本文部分。它的好处在于，使用这个方法可以在不必传输全部内容的情况下，就可以获取其中“关于该资源的信息”（元信息或称元数据）。<br>GET：向指定的资源发出“显示”请求。使用GET方法应该只用在读取数据，而不应当被用于产生“副作用”的操作中，例如在Web Application中。其中一个原因是GET可能会被网络蜘蛛等随意访问。参见安全方法<br>POST：向指定资源提交数据，请求服务器进行处理（例如提交表单或者上传文件）。数据被包含在请求本文中。这个请求可能会创建新的资源或修改现有资源，或二者皆有。<br>PUT：向指定资源位置上传其最新内容。<br>DELETE：请求服务器删除Request-URI所标识的资源。<br>TRACE：回显服务器收到的请求，主要用于测试或诊断。<br>CONNECT：HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。通常用于SSL加密服务器的链接（经由非加密的HTTP代理服务器）。 </p>
+</blockquote>
+<p>方法名称是区分大小写的。当某个请求所针对的资源不支持对应的请求方法的时候，服务器应当返回状态码405（Method Not Allowed），当服务器不认识或者不支持对应的请求方法的时候，应当返回状态码501（Not Implemented）。</p>
+</blockquote>
+<h4 id="请求路径"><a href="#请求路径" class="headerlink" title="请求路径"></a>请求路径</h4><p>HTTP1.1之后请求路径分为相对和绝对两种形式，如果请求通过代理服务器，则可以使用相对路径</p>
+<h3 id="响应行"><a href="#响应行" class="headerlink" title="响应行"></a>响应行</h3><ul>
+<li>1XX 等待后续请求</li>
+<li>2XX 请求成功</li>
+<li>3XX 重定向</li>
+<li>4XX 客户端错误</li>
+<li>5XX 服务端错误</li>
+</ul>
+<p>状态码和状态详细描述可以参照 <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank" rel="noopener">RFC官方文档</a> </p>
+<h2 id="头"><a href="#头" class="headerlink" title="头"></a>头</h2><h3 id="通用头-General-Header"><a href="#通用头-General-Header" class="headerlink" title="通用头(General Header)"></a>通用头(General Header)</h3><p>针对通用头的概念目前很模糊，首先看下官方的解释</p>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160309162858.png" alt="通用头" title="RFC"></p>
+<p>可以看到官方在HTTP1.1中声明了9个通用头，分别是Cache-Control、Connection、Date、Pragma、Traile、Transfer-Encoding、Upgrade、Via、Warning。通用头必须双方都支持才生效，否则会被接收方当做实体头。如果通信双方都承认的一般头字段，也可以当成(语义上的)通用头。</p>
+<p>从官方文档可以看出，虽然他声明了几个标准通用头，但是通用头的拓展性是非常大的，只要双方承认并使用，就可以当做通用头。实际使用中，像谷歌和火狐的浏览器调试工具都无视了通用头，详见下图。</p>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160309182535.png" alt="" title="谷歌调试工具Network格式"></p>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160309182551.png" alt="" title="火狐FirebugNetwork格式"></p>
+<p>谷歌自带的调试工具甚至自己定了一个General，里面放了请求地址，请求方法，响应状态和终端地址</p>
+<p>具体通用头释义戳<a href="http://www.ecdoer.com/post/http-seo.html" target="_blank" rel="noopener">这里</a></p>
+<h3 id="请求头（Request-Header）"><a href="#请求头（Request-Header）" class="headerlink" title="请求头（Request Header）"></a>请求头（Request Header）</h3><p>官方对于请求头的解释</p>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160311170618.png" alt="" title="RFC HTTP1.1 5.3节"></p>
+<p>网上流传的一段翻译</p>
+<blockquote>
+<p>请求头用于说明是谁或什么在发送请求、请求源于何处，或者客户端的喜好及能力。服务器可以根据请求头部给出的客户端信息，试着为客户端提供更好的响应。请求头域可能包含下列字段Accept、Accept-Charset、Accept- Encoding、Accept-Language、Authorization、From、Host、If-Modified-Since、If-Match、If-None-Match、If-Range、If-Range、If-Unmodified-Since、Max-Forwards、Proxy-Authorization、Range、Referer、User-Agent。对请求头域的扩展要求通讯双方都支持，如果存在不支持的请求头域，一般将会作为实体头域处理。</p>
+</blockquote>
+<p>在HTTP/1.1协议中，所有的请求头，除Host外，都是可选的。请求头种类非常多，还在不断扩展，具体请求头释义戳<a href="http://www.ecdoer.com/post/http-seo.html" target="_blank" rel="noopener">这里</a>或直接浏览<a href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="noopener">RCF HTTP1.1</a></p>
+<h3 id="响应头（Request-Header）"><a href="#响应头（Request-Header）" class="headerlink" title="响应头（Request Header）"></a>响应头（Request Header）</h3><p>官方对于响应头的解释<br><img src="http://7xr9ql.com1.z0.glb.clouddn.com/234.png" alt="" title="RFC HTTP1.1 6.2节"><br>网上流传的一段翻译</p>
+<blockquote>
+<p>响应头向客户端提供一些额外信息，比如谁在发送响应、响应者的功能，甚至与响应相关的一些特殊指令。这些头部有助于客户端处理响应，并在将来发起更好的请求。响应头域包含Age、Location、Proxy-Authenticate、Public、Retry- After、Server、Vary、Warning、WWW-Authenticate。对响应头域的扩展要求通讯双方都支持，如果存在不支持的响应头域，一般将会作为实体头域处理。</p>
+</blockquote>
+<p>具体响应头释义戳<a href="http://www.ecdoer.com/post/http-seo.html" target="_blank" rel="noopener">这里</a>或直接浏览<a href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="noopener">RCF HTTP1.1</a></p>
+<h3 id="实体头（Entity-Header）"><a href="#实体头（Entity-Header）" class="headerlink" title="实体头（Entity Header）"></a>实体头（Entity Header）</h3><p>官方对于实体头的解释<br><img src="http://7xr9ql.com1.z0.glb.clouddn.com/123.png" alt="" title="RFC HTTP1.1 7.1节"></p>
+<p>网上流传的一段翻译</p>
+<blockquote>
+<p>实体头部提供了有关实体及其内容的大量信息，从有关对象类型的信息，到能够对资源使用的各种有效的请求方法。总之，实体头部可以告知接收者它在对什么进行处理。请求消息和响应消息都可以包含实体信息，实体信息一般由实体头域和实体组成。实体头域包含关于实体的原信息，实体头包括信息性头部Allow、Location，内容头部Content-Base、Content-Encoding、Content-Language、Content-Length、Content-Location、Content-MD5、Content-Range、Content-Type，缓存头部Etag、Expires、Last-Modified、extension-header。</p>
+</blockquote>
+<p>具体实体头释义戳<a href="http://www.ecdoer.com/post/http-seo.html" target="_blank" rel="noopener">这里</a>或直接浏览<a href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="noopener">RCF HTTP1.1</a>，这里只重点介绍一下坑了我一次的Content-Type</p>
+<h4 id="Content-Type"><a href="#Content-Type" class="headerlink" title="Content-Type"></a>Content-Type</h4><p>Content-Type<strong>本来</strong>是用来定义浏览器如何正确对响应流的处理，他是通过响应流的媒体类型来确定的。</p>
+<pre><code>格式： Content-Type: [媒体类型]/[具体格式]   
+如： Content-Type: image/jpeg
+</code></pre><p>媒体类型目前是IANA(The Internet Assigned Numbers Authority，互联网数字分配机构)定义的8个大类，分别是：</p>
+<ul>
+<li>application— (比如: application/vnd.ms-excel.)</li>
+<li>audio (比如: audio/mpeg.)</li>
+<li>image (比如: image/png.)</li>
+<li>message (比如,:message/http.)</li>
+<li>model(比如:model/vrml.)</li>
+<li>multipart (比如:multipart/form-data.)</li>
+<li>text(比如:text/html.)</li>
+<li>video(比如:video/quicktime.)</li>
+</ul>
+<p>不同浏览器对于Content-Type的处理方式不能会不同，我引用来一个2010年统计的图作为参考</p>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/231.png" alt=""></p>
+<p>但是现在他的作用不仅仅如此，在常用的HTTP请求模拟工具PostMan和HTTPRequester中都可以看到他的身影</p>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/post.png" alt="" title="PostMan界面"></p>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/987546.png" alt="" title="HTTPRequester界面"></p>
+<p>那么Content-Type在这里究竟起什么作用，笔者搜寻变半天终于找到一个比较满意的答案，当别人无法给你答案时，你只能自己摸索出一个答案。</p>
+<p>以下是博主在<em>Asp.Net WebService</em>环境下使用PostMan做的实验</p>
+<ol>
+<li>Content-Type: Text<br><img src="http://7xr9ql.com1.z0.glb.clouddn.com/1111.png" alt=""></li>
+</ol>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/12.png" alt=""></p>
+<ol>
+<li>Content-Type: text/plain<br><img src="http://7xr9ql.com1.z0.glb.clouddn.com/21.png" alt=""></li>
+</ol>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/22.png" alt=""></p>
+<ol>
+<li>Content-Type: application/x-www-form-urlencoded<br><img src="http://7xr9ql.com1.z0.glb.clouddn.com/31.png" alt=""></li>
+</ol>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/32.png" alt=""></p>
+<ol>
+<li>Content-Type: application/json<br><img src="http://7xr9ql.com1.z0.glb.clouddn.com/41.png" alt=""></li>
+</ol>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/42.png" alt=""></p>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/43.png" alt="" title="JSON返回值">   </p>
+<ol>
+<li>Content-Type: application/javascript、application/xml、text/xml、text/html<br>返回：请求格式无效(WebService不支持)</li>
+</ol>
+<p>通过实验可以看出，当PostMan设置Content-Type为Text时，其实Request中是没有Content-Type这一属性的，但是服务端自动解析Content-Type为默认配置（text/plain,utf-8）；当Content-Type为application/x-www-form-urlencoded时，实体在请求发出时就会被转译为unicode格式；但我有一个<strong>疑问</strong>就是为什么Content-Type为application/json时，请求输入流字节长度是正确的，但是转成字符串之后为空串，而且请求实体也绝对没有丢（即图中参数a和参数b）</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>Content-Type为application/x-www-form-urlencoded时，客户端会在请求发出前把实体进行转译，而之所以有些服务下能够正常接收入参大概是因为他们的Content-Type设置为text/plain的缘故。Content-Type这个属性出现在请求头中只是声明实体的格式，让服务端准备好解析手段</p>
+<p>其它属性如果后续有使用到还会继续补充内容</p>
+<h2 id="参照"><a href="#参照" class="headerlink" title="参照"></a>参照</h2><p>HTTP 协议漫谈:<a href="http://blog.jobbole.com/88199/" target="_blank" rel="noopener">http://blog.jobbole.com/88199/</a></p>
+<p>HTTP响应头和请求头信息对照表：<a href="http://tools.jb51.net/table/http_header" target="_blank" rel="noopener">http://tools.jb51.net/table/http_header</a></p>
+<p>RFC 2016 HTTP/1.1:<a href="https://tools.ietf.org/html/rfc2616" target="_blank" rel="noopener">https://tools.ietf.org/html/rfc2616</a></p>
+<p>四种常见的 POST 提交数据方式:<a href="https://imququ.com/post/four-ways-to-post-data-in-http.html" target="_blank" rel="noopener">https://imququ.com/post/four-ways-to-post-data-in-http.html</a></p>
+<p>SodaZhcn的简书-Http协议详解：<a href="http://www.jianshu.com/p/e83d323c6bcc" target="_blank" rel="noopener">http://www.jianshu.com/p/e83d323c6bcc</a></p>
+<p>HTTP头信息解读【SEO必知】：<a href="http://www.ecdoer.com/post/http-seo.html" target="_blank" rel="noopener">http://www.ecdoer.com/post/http-seo.html</a></p>
+<p>yangfch3的笔记 HTTP协议详解：<a href="https://www.zybuluo.com/yangfch3/note/167490" target="_blank" rel="noopener">https://www.zybuluo.com/yangfch3/note/167490</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag">#学习笔记</a>
+          
+            <a href="/tags/HTTP协议/" rel="tag">#HTTP协议</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/28/Markdown 语法实例/" rel="next" title="Markdown 语法实例">
+                <i class="fa fa-chevron-left"></i> Markdown 语法实例
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/14/浅谈Base64转码/" rel="prev" title="浅谈Base64转码">
+                浅谈Base64转码 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/12/浅谈HTTP协议中的Content-Type/"
+           data-title="浅谈HTTP协议中的Content-Type" data-url="http://yoursite.com/2016/03/12/浅谈HTTP协议中的Content-Type/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr9ql.com1.z0.glb.clouddn.com/avatar.jpeg"
+               alt="cfmy" />
+          <p class="site-author-name" itemprop="name">cfmy</p>
+          <p class="site-description motion-element" itemprop="description">技术分享与萝莉研究</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5334825982" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 微博
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#协议概述"><span class="nav-number">1.</span> <span class="nav-text">协议概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协议格式"><span class="nav-number">2.</span> <span class="nav-text">协议格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行"><span class="nav-number">3.</span> <span class="nav-text">行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求行"><span class="nav-number">3.1.</span> <span class="nav-text">请求行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求方法"><span class="nav-number">3.1.1.</span> <span class="nav-text">请求方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求路径"><span class="nav-number">3.1.2.</span> <span class="nav-text">请求路径</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应行"><span class="nav-number">3.2.</span> <span class="nav-text">响应行</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头"><span class="nav-number">4.</span> <span class="nav-text">头</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通用头-General-Header"><span class="nav-number">4.1.</span> <span class="nav-text">通用头(General Header)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求头（Request-Header）"><span class="nav-number">4.2.</span> <span class="nav-text">请求头（Request Header）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应头（Request-Header）"><span class="nav-number">4.3.</span> <span class="nav-text">响应头（Request Header）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实体头（Entity-Header）"><span class="nav-number">4.4.</span> <span class="nav-text">实体头（Entity Header）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Content-Type"><span class="nav-number">4.4.1.</span> <span class="nav-text">Content-Type</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">5.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参照"><span class="nav-number">6.</span> <span class="nav-text">参照</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  cfmyhome - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cfmy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cfmyhome"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>

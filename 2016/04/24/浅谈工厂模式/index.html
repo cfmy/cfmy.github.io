@@ -1,0 +1,820 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习笔记,设计模式," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="橙风沐雨's" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://7xr9ql.com1.z0.glb.clouddn.com/444.png?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="创建型模型 创建型模型抽象了实例化过程，它们帮助一个系统独立于如何创建、组合和表示它的那些对象。类创建型模型使用继承改变实例化的类，而对象创建模型将实例化委托给另一个对象 在这些模式中有两个不断出现的主旋律。第一，他们都将关于该系统使用哪些具体的类的信息封装起来。第二，他们隐藏了这些类的示例是如何被创建和放在一起的。整个系统关于这些对象所知道的是有抽象类所定义的接口。因为，创建型模式在什么地方被创">
+<meta name="keywords" content="学习笔记,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈工厂模式">
+<meta property="og:url" content="http://yoursite.com/2016/04/24/浅谈工厂模式/index.html">
+<meta property="og:site_name" content="橙风沐雨&#39;s">
+<meta property="og:description" content="创建型模型 创建型模型抽象了实例化过程，它们帮助一个系统独立于如何创建、组合和表示它的那些对象。类创建型模型使用继承改变实例化的类，而对象创建模型将实例化委托给另一个对象 在这些模式中有两个不断出现的主旋律。第一，他们都将关于该系统使用哪些具体的类的信息封装起来。第二，他们隐藏了这些类的示例是如何被创建和放在一起的。整个系统关于这些对象所知道的是有抽象类所定义的接口。因为，创建型模式在什么地方被创">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F3%20%282%29.png">
+<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F3%20%283%29.png">
+<meta property="og:updated_time" content="2018-02-05T04:17:18.072Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈工厂模式">
+<meta name="twitter:description" content="创建型模型 创建型模型抽象了实例化过程，它们帮助一个系统独立于如何创建、组合和表示它的那些对象。类创建型模型使用继承改变实例化的类，而对象创建模型将实例化委托给另一个对象 在这些模式中有两个不断出现的主旋律。第一，他们都将关于该系统使用哪些具体的类的信息封装起来。第二，他们隐藏了这些类的示例是如何被创建和放在一起的。整个系统关于这些对象所知道的是有抽象类所定义的接口。因为，创建型模式在什么地方被创">
+<meta name="twitter:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6221277831146505000,
+      author: 'ROOT'
+    }
+  };
+</script>
+
+  <title> 浅谈工厂模式 | 橙风沐雨's </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?8ded7e135cea0a8c5779fe298f8b33b2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">橙风沐雨's</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">天空不只在我们头顶，她一直延伸至大地。                                               当我们从地上抬起脚，就像是走在天空里</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-log">
+          <a href="/log" rel="section">
+            
+              <i class="menu-item-icon fa fa-log fa-fw"></i> <br />
+            
+            日志
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                浅谈工厂模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-24T17:58:48+08:00" content="2016-04-24">
+              2016-04-24
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/24/浅谈工厂模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/24/浅谈工厂模式/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="创建型模型"><a href="#创建型模型" class="headerlink" title="创建型模型"></a>创建型模型</h1><blockquote>
+<p>创建型模型抽象了实例化过程，它们帮助一个系统独立于如何创建、组合和表示它的那些对象。<em>类创建型模型</em>使用继承改变实例化的类，而<em>对象创建模型</em>将实例化委托给另一个对象</p>
+<p>在这些模式中有两个不断出现的主旋律。第一，他们都将关于该系统使用哪些具体的类的信息封装起来。第二，他们隐藏了这些类的示例是如何被创建和放在一起的。整个系统关于这些对象所知道的是有抽象类所定义的接口。因为，创建型模式在什么地方被创建，又谁创建，它是怎么被创建的，以及何时被创建这几个方面给予很大的灵活性。它们允许你用结构和功能差别很大的“产品”对象配置一个系统。配置可以是静态的（即编译时制定）。也可以是动态的（在运行时）</p>
+</blockquote>
+<p>目前创建型模型主要有  </p>
+<ol>
+<li>抽象工厂(ABSTRACT FACTORY)  </li>
+<li>生成器(BUILDER)  </li>
+<li>工厂方法(FACTORY METHOD)  </li>
+<li>原型(PROTOTYPE)  </li>
+<li>单件(SINGLETON)  </li>
+</ol>
+<a id="more"></a>
+<p>本篇主要介绍工厂方法和抽象工厂，以下通过demo演示从<br>没有模式-&gt;简单工厂-&gt;工厂方法-&gt;抽象工厂 的过程</p>
+<h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>假设你是一个农夫，你开垦了一块土地并准备大展身手，你打算先随便种点东西试一试土地合不合格，于是播撒下不知名野种，不久后长出了各式各样野果，这个过程中没有用到任何模式，落实到代码中就是<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">YG yeguo = <span class="keyword">new</span> YG();<span class="comment">//野果</span></span><br><span class="line">yeguo.bozhong();<span class="comment">//播种</span></span><br><span class="line">yeguo.jiaoshui();<span class="comment">//浇水</span></span><br><span class="line">yeguo.shouhuo();<span class="comment">//收获</span></span><br></pre></td></tr></table></figure></p>
+<p>检验过土地之后，你准备开始正式种地了，目前的情况是你只有这一小块地，他一次只能种一类种子；种子可以买，但是并不是所有种子都是一个季度种植的。所以你打算根据季度来种下不同的种子，获得不同的产物（这里不考虑收获周期）。我们假设你打算春季种植大葱，秋季种植油菜，UML图如下</p>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png" alt=""></p>
+<p>这时候种植代码大致如下所示</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Product product ;<span class="comment">//农作物</span></span><br><span class="line"><span class="keyword">switch</span>(Season)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">case</span> Spring:</span><br><span class="line">		product = Shallot();<span class="comment">//大葱</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> Fall:</span><br><span class="line">		product = Rape();<span class="comment">//油菜</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> Exception();</span><br><span class="line">&#125;</span><br><span class="line">product.bozhong();<span class="comment">//播种</span></span><br><span class="line">product.jiaoshui();<span class="comment">//浇水</span></span><br><span class="line">product.shouhuo();<span class="comment">//收获</span></span><br></pre></td></tr></table></figure>
+<p>我们假设把实例化农作物那部分代码封装到一个类<code>Factory</code>里面，这个类返回一个<code>Product</code>实例，那么即是<strong>简单工厂</strong></p>
+<p>这时候Client代码如下所示</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Pruduct product = (<span class="keyword">new</span> Factory()).CreatePruduct();</span><br><span class="line">product.bozhong();<span class="comment">//播种</span></span><br><span class="line">product.jiaoshui();<span class="comment">//浇水</span></span><br><span class="line">product.shouhuo();<span class="comment">//收获</span></span><br></pre></td></tr></table></figure>
+<p>在简单工厂中，我们将大葱和油菜抽象为农作物，它们共同继承了农作物，实现了农作物的三个接口，它们共同组成了产品部分；然后将实例化部分代码封装进工厂类中，这样你就不无需关注产品是如何实例化的，也不知道实例化对象具体是哪个产品，反正你只需要操作他的接口方法就可以了</p>
+<p>在简单工厂中，假设你需要新增一个农产品–萝卜，你需要新增一个萝卜类，并让它实现农产品接口的几个接口方法，这看起来没什么难的。但是！你还要修改工厂方法中的实例化过程（示例中的<code>switch case</code>那段代码），不然它永远不会帮你实例化一个萝卜出来，这样的话工厂方法中就违反了一个设计模式中的基本原则–<strong>开放封闭原则</strong>，即对修改封闭，对扩展开放，我们可以新增类，但不能轻易修改已经存在的类。这个问题也有一些取巧的方法处理，利用反射来实例化不同产品。综上，简单工厂严格意义上来说并不算一个合格的设计模式，它只不过利用产品接口来统一产品类别，再将实例化方法封装到一个单独的类别中，并没有什么扩展性可言，在不修改旧代码的情况下可以说无法扩展</p>
+<h3 id="简单工厂的优缺点"><a href="#简单工厂的优缺点" class="headerlink" title="简单工厂的优缺点"></a>简单工厂的优缺点</h3><ol>
+<li>通过接口调用不同实例的方法，符合面向接口编程的基本思路，减轻了客户端和具体产品类的耦合</li>
+<li>将实例化的过程封装到一个具体工厂类中，客户无需关注自己实例化过程，进一步减轻了客户的负担，但是如果增加新的产品，这个具体工厂类就必须修改自己的实例化过程代码，不符合开放封闭原则</li>
+<li>通过接口调用的缺点：产品接口中的方法一旦确定就无法改变，因为一旦改变就要修改其所有子类</li>
+</ol>
+<h3 id="工厂类中反射"><a href="#工厂类中反射" class="headerlink" title="工厂类中反射"></a>工厂类中反射</h3><p>反射大致思路有几种   </p>
+<ol>
+<li>构造工厂类是传入类名，以此反射   </li>
+<li>工厂类内部根据某个配置项或某个变量值，以此反射   </li>
+</ol>
+<h2 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h2><p>在简单工厂模式下，你在一块土地上种植了大葱、油菜、花生、玉米等等农作物，工厂类总是能帮你实例出各种应季农作物，你只要做好自己的工作（播种，浇水，收获），如此就够了。随着时间的流逝，你膨胀了，你觉得自己应该扩张一块地，用来种植一些经济作物，比如水果、烟草。但是简单工厂模式下无法满足这个扩展，因为工厂类只有一个，那么我们尝试把工厂类抽象化，再把农作物和经济作物抽象为作物，UML图如下</p>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F3%20%282%29.png" alt=""></p>
+<p>图中的土地和工厂统一为一个类，不做区分。这时候Client不单单是简单的调用工厂的<code>CreatePruduct</code>获取实例了，因为首先需要先选择一个工厂子类（土地A或土地B），这种情况下如果在新增一个作物类型，也只需要新增一个工厂类和对应的作物类就可以，这个时候你的注意力比以前高了一个维度，之前你关注土地种出的具体作物是萝卜还是油菜，现在只需要关注它是农作物还是经济作物就可以，至于具体农作物种植什么，可以在农作物中通过简单工厂方法实现</p>
+<h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><p>随着时光的流逝，你的工厂和土地已经扩充到了960万平方公里，地球上能中的东西都被你种了一个遍，收获的作物可以到地球三十圈，这时候你突然发现了转基因这个概念，你将继续扩充土地，支持转基因作物</p>
+<p>这时UML图变成下图</p>
+<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F3%20%283%29.png" alt=""></p>
+<p>这时你可以在转基因和非转基因这个增面进行扩张，而作物类别已经无法进行扩张了，因为你个抽象工厂已经确定了只能生产农作物和经济作物</p>
+<h2 id="适用性"><a href="#适用性" class="headerlink" title="适用性"></a>适用性</h2><ul>
+<li>一个系统要独立于它的产品的创建、组合和表示时</li>
+<li>一个系统要由多个产品系列中的一个来配置时</li>
+<li>当你要强调一系列相关的产品对象的设计以便进行联合使用时</li>
+<li>当你提供你个产品类库，而只想显示它们的接口而不是实现时</li>
+</ul>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><ol>
+<li><em>他分离了具体的类</em> 因为一个工厂封装创建产品对象的责任和过程，它将客户和类的实现分离。客户通过它们的抽象接口操纵实例。产品的类名也在具体工厂的实现中被分离；它们不出现在客户代码中</li>
+<li><em>它使得易于交换产品系列</em> 一个具体工厂类在一个应用仅出现以此–即在它初始化的时候。这使得改变一个应用的具体工厂变得容易。它只需改变具体的工厂既可以使用不同的产品配置，这是因为一个抽象工厂创建了一个完整的产品系列，所以整个产品系列会立刻改变</li>
+<li><em>他有利于产品的一致性</em> 当一个系列中的产品对象被设计成一起工作时，一个应用一次只能使用同一个系列中的对象</li>
+<li><em>难以支持新品种的产品</em> 难以扩展抽象工厂以生产新种类的产品。这是因为抽象工厂接口确定了可以被创建的产品集合。支持心种类的产品就需要扩展该工厂接口，这将涉及所有子类的改变</li>
+</ol>
+<h1 id="参照"><a href="#参照" class="headerlink" title="参照"></a>参照</h1><ul>
+<li>《设计模式-可复用面向对象软件的基础》</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习笔记/" rel="tag">#学习笔记</a>
+          
+            <a href="/tags/设计模式/" rel="tag">#设计模式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/08/浅谈正则/" rel="next" title="浅谈正则">
+                <i class="fa fa-chevron-left"></i> 浅谈正则
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/11/浅谈匿名函数及Lambda/" rel="prev" title="浅谈匿名函数及Lambda">
+                浅谈匿名函数及Lambda <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/24/浅谈工厂模式/"
+           data-title="浅谈工厂模式" data-url="http://yoursite.com/2016/04/24/浅谈工厂模式/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://7xr9ql.com1.z0.glb.clouddn.com/avatar.jpeg"
+               alt="cfmy" />
+          <p class="site-author-name" itemprop="name">cfmy</p>
+          <p class="site-description motion-element" itemprop="description">技术分享与萝莉研究</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/5334825982" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> 微博
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建型模型"><span class="nav-number">1.</span> <span class="nav-text">创建型模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单工厂"><span class="nav-number">1.1.</span> <span class="nav-text">简单工厂</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单工厂的优缺点"><span class="nav-number">1.1.1.</span> <span class="nav-text">简单工厂的优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂类中反射"><span class="nav-number">1.1.2.</span> <span class="nav-text">工厂类中反射</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂方法"><span class="nav-number">1.2.</span> <span class="nav-text">工厂方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂"><span class="nav-number">1.3.</span> <span class="nav-text">抽象工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适用性"><span class="nav-number">1.4.</span> <span class="nav-text">适用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#效果"><span class="nav-number">1.5.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参照"><span class="nav-number">2.</span> <span class="nav-text">参照</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  cfmyhome - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cfmy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+
+  
+
+
+
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cfmyhome"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+
+</body>
+</html>
