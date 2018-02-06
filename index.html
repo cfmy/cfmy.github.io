@@ -1,15 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
@@ -27,18 +34,38 @@
 
 
 
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
 
 
 
 
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="http://7xr9ql.com1.z0.glb.clouddn.com/444.png?v=5.1.4" color="#222">
+
+
+
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -48,11 +75,6 @@
 
 
   <link rel="alternate" href="/atom.xml" title="橙风沐雨's" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="http://7xr9ql.com1.z0.glb.clouddn.com/444.png?v=0.5.0" />
 
 
 
@@ -72,26 +94,42 @@
 
 
 
-<script type="text/javascript" id="hexo.configuration">
+<script type="text/javascript" id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
-    motion: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
-      userId: undefined,
+      userId: '0',
       author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
-  <title> 橙风沐雨's </title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
+  <link rel="canonical" href="http://yoursite.com/"/>
+
+
+
+
+
+  <title>橙风沐雨's</title>
   
+
+
 
 
 
@@ -99,7 +137,7 @@
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?8ded7e135cea0a8c5779fe298f8b33b2";
+      hm.src = "https://hm.baidu.com/hm.js?8ded7e135cea0a8c5779fe298f8b33b2";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -108,40 +146,43 @@
 
 
 
+</head>
 
-
-
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">橙风沐雨's</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">橙风沐雨's</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">天空不只在我们头顶，她一直延伸至大地。                                               当我们从地上抬起脚，就像是走在天空里</p>
+      
   </div>
-  <p class="site-subtitle">天空不只在我们头顶，她一直延伸至大地。                                               当我们从地上抬起脚，就像是走在天空里</p>
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -154,7 +195,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -162,31 +203,31 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
+          <a href="/about/" rel="section">
             
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            归档
+            标签
           </a>
         </li>
       
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
             
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            标签
+            归档
           </a>
         </li>
       
@@ -194,9 +235,9 @@
         <li class="menu-item menu-item-log">
           <a href="/log" rel="section">
             
-              <i class="menu-item-icon fa fa-log fa-fw"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
             
-            日志
+            log
           </a>
         </li>
       
@@ -207,6 +248,8 @@
 
   
 </nav>
+
+
 
  </div>
     </header>
@@ -221,13 +264,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/27/关于努力/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cfmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xr9ql.com1.z0.glb.clouddn.com/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橙风沐雨's">
+    </span>
 
     
       <header class="post-header">
@@ -235,27 +292,27 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2018/01/27/关于努力/" itemprop="url">
-                  关于努力
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2018/01/27/关于努力/" itemprop="url">关于努力</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-01-27T19:30:33+08:00" content="2018-01-27">
-              2018-01-27
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-27T19:30:33+08:00">
+                2018-01-27
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -265,15 +322,21 @@
           
 
           
+          
 
           
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -282,20 +345,29 @@
       
         
           <p>多久了？很久–久到我以为以后不会在更新任何一篇博文，域名再也不用续费了。2016年下半年到2018年一月底，我感觉自己人生处于持续的低潮，更准确的说是还在下跌的过程，简直就像我好久不变的QQ个性签名一样—<strong>活在梦里</strong><br>
-          <div class="post-more-link text-center">
+          <!--noindex-->
+          <div class="post-button text-center">
             <a class="btn" href="/2018/01/27/关于努力/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -305,6 +377,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -312,13 +388,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/11/浅谈匿名函数及Lambda/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cfmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xr9ql.com1.z0.glb.clouddn.com/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橙风沐雨's">
+    </span>
 
     
       <header class="post-header">
@@ -326,27 +416,27 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/07/11/浅谈匿名函数及Lambda/" itemprop="url">
-                  浅谈匿名函数及Lambda
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/07/11/浅谈匿名函数及Lambda/" itemprop="url">浅谈匿名函数及Lambda</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-11T22:22:03+08:00" content="2016-07-11">
-              2016-07-11
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-11T22:22:03+08:00">
+                2016-07-11
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -356,15 +446,21 @@
           
 
           
+          
 
           
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -374,20 +470,29 @@
         
           <h2 id="匿名对象"><a href="#匿名对象" class="headerlink" title="匿名对象"></a>匿名对象</h2><h3 id="初始化方法"><a href="#初始化方法" class="headerlink" title="初始化方法"></a>初始化方法</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy"</span>,Sex = <span class="string">"M"</span>&#125; ;<span class="comment">//单个匿名对象  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> objs = <span class="keyword">new</span>[]</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy1"</span>, Sex = <span class="string">"M"</span> &#125;,</span><br><span class="line">       <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy2"</span>, Sex = <span class="string">"M"</span> &#125;,</span><br><span class="line">       <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy3"</span>, Sex = <span class="string">"M"</span> &#125;,</span><br><span class="line">       <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy4"</span>, Sex = <span class="string">"M"</span> &#125;,</span><br><span class="line">       <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy5"</span>, Sex = <span class="string">"M"</span> &#125;</span><br><span class="line">   &#125;;<span class="comment">//匿名对象数组；注意 属性顺序，数量，类型都必须一致，否则提示找不到隐式数组的最佳类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> objCobj = <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy"</span>, self = <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy"</span> &#125; &#125;; <span class="comment">//嵌套匿名对象</span></span><br></pre></td></tr></table></figure>
 <p>初始化一个匿名对象之后，编译器会生成一个运行时类型(System.RunTimeType)，它是受保护的，它会根据初始化时的属性顺序，数量，类型构造出一个看不到的类型，它的所有属性都是只读的，只能在实例化时赋值<br>
-          <div class="post-more-link text-center">
+          <!--noindex-->
+          <div class="post-button text-center">
             <a class="btn" href="/2016/07/11/浅谈匿名函数及Lambda/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -397,6 +502,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -404,13 +513,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/24/浅谈工厂模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cfmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xr9ql.com1.z0.glb.clouddn.com/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橙风沐雨's">
+    </span>
 
     
       <header class="post-header">
@@ -418,27 +541,27 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/04/24/浅谈工厂模式/" itemprop="url">
-                  浅谈工厂模式
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/04/24/浅谈工厂模式/" itemprop="url">浅谈工厂模式</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-24T17:58:48+08:00" content="2016-04-24">
-              2016-04-24
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-24T17:58:48+08:00">
+                2016-04-24
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -448,15 +571,21 @@
           
 
           
+          
 
           
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -476,20 +605,29 @@
 <li>原型(PROTOTYPE)  </li>
 <li>单件(SINGLETON)  </li>
 </ol>
-          <div class="post-more-link text-center">
+          <!--noindex-->
+          <div class="post-button text-center">
             <a class="btn" href="/2016/04/24/浅谈工厂模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -499,6 +637,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -506,13 +648,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/08/浅谈正则/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cfmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xr9ql.com1.z0.glb.clouddn.com/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橙风沐雨's">
+    </span>
 
     
       <header class="post-header">
@@ -520,27 +676,27 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/04/08/浅谈正则/" itemprop="url">
-                  浅谈正则
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/04/08/浅谈正则/" itemprop="url">浅谈正则</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-08T20:14:56+08:00" content="2016-04-08">
-              2016-04-08
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-08T20:14:56+08:00">
+                2016-04-08
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -550,15 +706,21 @@
           
 
           
+          
 
           
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -569,20 +731,29 @@
           <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近遇到这样一段代码</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reg= <span class="regexp">/&lt;td class="bold"&gt;(\d+)&lt;\/td&gt;&lt;td class="xxxx"&gt;([\d\,]+?)&lt;\/td&gt;/</span>；</span><br><span class="line">match=str.match(reg);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!match) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'数据不正确'</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> data=&#123;</span><br><span class="line">		type:type,</span><br><span class="line">		time:match[<span class="number">1</span>].replace(<span class="regexp">/^(\d&#123;4&#125;)(\d&#123;2&#125;)(\d&#123;2&#125;)\d&#123;2&#125;/</span>, <span class="string">'$1-$2-$3 '</span>)<span class="string">",</span></span><br><span class="line"><span class="string">		number:match[1].replace(/^(\d&#123;8&#125;)(\d&#123;2&#125;)$/, '$1-$2'),</span></span><br><span class="line"><span class="string">		data:match[2]</span></span><br><span class="line"><span class="string">	&#125;;</span></span><br><span class="line"><span class="string">	return data;</span></span><br><span class="line"><span class="string">&#125;catch(err)&#123;</span></span><br><span class="line"><span class="string">	throw('解析数据失败');</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>正则匹配的过程很好看懂，但是后面<code>match[1]</code>和<code>match[2]</code>是什么鬼啊，还有<code>replace(/^(\d{8})(\d{2})$/, &#39;$1-$2&#39;)</code>中第二个参数是什么含义也搞不懂，平时总用不到正则，导致我前前后后重新看了好几遍，第一遍大致了解了所有<em>元字符</em>含义（但是时间久就忘记了）；第二次好像是发现了<em>贪婪模式和懒惰模式</em>；这次又学会了<em>反向引用</em>，之后没准又发现漏掉什么重点，所以赶紧整理一下<br>
-          <div class="post-more-link text-center">
+          <!--noindex-->
+          <div class="post-button text-center">
             <a class="btn" href="/2016/04/08/浅谈正则/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -592,6 +763,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -599,13 +774,27 @@
       
 
   
-  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/27/关于windows消息队列机制的臆想/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cfmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xr9ql.com1.z0.glb.clouddn.com/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橙风沐雨's">
+    </span>
 
     
       <header class="post-header">
@@ -613,27 +802,27 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-            
-            
-              
                 
-                <a class="post-title-link" href="/2016/03/27/关于windows消息队列机制的臆想/" itemprop="url">
-                  关于windows消息队列机制的臆想
-                </a>
-              
-            
-          </h1>
+                <a class="post-title-link" href="/2016/03/27/关于windows消息队列机制的臆想/" itemprop="url">关于windows消息队列机制的臆想</a></h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-27T13:15:29+08:00" content="2016-03-27">
-              2016-03-27
-            </time>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-27T13:15:29+08:00">
+                2016-03-27
+              </time>
+            
+
+            
+
+            
           </span>
 
           
@@ -643,15 +832,21 @@
           
 
           
+          
 
           
+
+          
+
           
 
         </div>
       </header>
     
 
-
+    
+    
+    
     <div class="post-body" itemprop="articleBody">
 
       
@@ -661,20 +856,29 @@
         
           <p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/5-1.gif" alt="&quot;图片来源网络&quot;"></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>此文写于2016年，虽然目前为止微软已经有些下埔路的趋势，但不可否认过去几十年的微软是无敌的，PC用户依然被微软垄断，随着越来越多的移动终端出现，应用越来越复杂，微软也无法逆转长江后浪推前浪的趋势，只能紧跟时代步伐，推出winPhone，免费升级win10，.Net开源，推广XBOX视频游戏机。<br>
-          <div class="post-more-link text-center">
+          <!--noindex-->
+          <div class="post-button text-center">
             <a class="btn" href="/2016/03/27/关于windows消息队列机制的臆想/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
+          <!--/noindex-->
         
       
     </div>
+    
+    
+    
 
-    <div>
-      
-    </div>
+    
+
+    
+
+    
 
     <footer class="post-footer">
+      
+
       
 
       
@@ -684,6 +888,10 @@
         <div class="post-eof"></div>
       
     </footer>
+  </div>
+  
+  
+  
   </article>
 
 
@@ -716,73 +924,86 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://7xr9ql.com1.z0.glb.clouddn.com/avatar.jpeg"
-               alt="cfmy" />
-          <p class="site-author-name" itemprop="name">cfmy</p>
-          <p class="site-description motion-element" itemprop="description">技术分享与萝莉研究</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">9</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://7xr9ql.com1.z0.glb.clouddn.com/avatar.jpeg"
+                alt="cfmy" />
+            
+              <p class="site-author-name" itemprop="name">cfmy</p>
+              <p class="site-description motion-element" itemprop="description">技术分享与萝莉研究</p>
           </div>
 
-          
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
 
           
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">11</span>
-                <span class="site-state-item-name">标签</span>
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
               </a>
             </div>
           
 
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
           
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/5334825982" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> 微博
-                  
-                </a>
-              </span>
-            
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/5334825982" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微博</a>
+                  </span>
+                
+            </div>
           
+
+          
+          
+
+          
+          
+
+          
+
         </div>
-
-        
-        
-
-        
-        <div class="links-of-blogroll motion-element">
-          
-        </div>
-
       </section>
+
+      
 
       
 
@@ -796,44 +1017,53 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  cfmyhome - 
-  <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">cfmy</span>
-</div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
+  
 </div>
 
 
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
   </div>
 
   
-
-
-  
-
-
-
 
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
@@ -842,44 +1072,10 @@
 </script>
 
 
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
 
 
 
-  
-  
 
-
-  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
 
 
 
@@ -887,41 +1083,140 @@
 
 
 
-  
 
 
 
-   
-   
-   
-   
-   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-   
-       <script type="text/javascript">
-           function ShowGitment(){
-               document.getElementById("gitment-display-button").style.display = "none";
-               document.getElementById("gitment-container").style.display = "block";
-               var gitment = new Gitment({
-                   id: document.location.href, 
-                   owner: 'cfmy',
-                   repo: 'cfmysrepo',
-                   oauth: {
-                       client_id: 'f543d76cd65408d0451b',
-                       client_secret: '94d82bac9ff07901405710121a14d16265641e96',
-                   }});
-               gitment.render('gitment-container');
-           }
-       </script>
-   
+
+
+
+
 
 
   
   
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
   
 
   
 
+  
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>
