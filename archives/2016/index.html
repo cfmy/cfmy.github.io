@@ -80,8 +80,8 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 6221277831146505000,
-      author: 'ROOT'
+      userId: undefined,
+      author: '博主'
     }
   };
 </script>
@@ -641,14 +641,34 @@
   </script>
 
   
-    
-      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
-      <script src="/js/src/hook-duoshuo.js"></script>
-    
-  
 
 
 
+
+
+   
+   
+   
+   
+   <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+   <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+   
+       <script type="text/javascript">
+           function ShowGitment(){
+               document.getElementById("gitment-display-button").style.display = "none";
+               document.getElementById("gitment-container").style.display = "block";
+               var gitment = new Gitment({
+                   id: document.location.href, 
+                   owner: 'cfmy',
+                   repo: 'cfmysrepo',
+                   oauth: {
+                       client_id: 'f543d76cd65408d0451b',
+                       client_secret: '94d82bac9ff07901405710121a14d16265641e96',
+                   }});
+               gitment.render('gitment-container');
+           }
+       </script>
+   
 
 
   
