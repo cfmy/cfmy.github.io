@@ -62,7 +62,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="http://7xr9ql.com1.z0.glb.clouddn.com/444.png?v=5.1.4" color="#222">
+  <link rel="mask-icon" href="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/444.png?v=5.1.4" color="#222">
 
 
 
@@ -89,14 +89,14 @@
 <meta property="og:site_name" content="橙风沐雨&#39;s">
 <meta property="og:description" content="概述首先要理解Base64是一种二进制数据的表示方法，它只是一种表达形式，并不是加密，也不是压缩字符长度。惯例引用wiki概述：  Base64是一种基于64个可打印字符来表示二进制数据的表示方法。由于2的6次方等于64，所以每6个比特为一个单元，对应某个可打印字符。三个字节有24个比特，对应于4个Base64单元，即3个字节需要用4个可打印字符来表示。它可用来作为电子邮件的传输编码。在Base6">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160314135213.png">
-<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160314143830.png">
-<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160314105920.png">
-<meta property="og:updated_time" content="2018-04-11T08:40:29.777Z">
+<meta property="og:image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E6%88%AA%E5%9B%BE20160314135213.png">
+<meta property="og:image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E6%88%AA%E5%9B%BE20160314143830.png">
+<meta property="og:image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E6%88%AA%E5%9B%BE20160314105920.png">
+<meta property="og:updated_time" content="2018-11-19T14:50:36.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈Base64转码">
 <meta name="twitter:description" content="概述首先要理解Base64是一种二进制数据的表示方法，它只是一种表达形式，并不是加密，也不是压缩字符长度。惯例引用wiki概述：  Base64是一种基于64个可打印字符来表示二进制数据的表示方法。由于2的6次方等于64，所以每6个比特为一个单元，对应某个可打印字符。三个字节有24个比特，对应于4个Base64单元，即3个字节需要用4个可打印字符来表示。它可用来作为电子邮件的传输编码。在Base6">
-<meta name="twitter:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160314135213.png">
+<meta name="twitter:image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E6%88%AA%E5%9B%BE20160314135213.png">
 
 
 
@@ -284,7 +284,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cfmy">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg">
+      <meta itemprop="image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -368,15 +368,15 @@
 </blockquote>
 <a id="more"></a>
 <h2 id="转换原理"><a href="#转换原理" class="headerlink" title="转换原理"></a>转换原理</h2><p>由于Base64是针对字节进行转码的，对于一般的文本，需要先按照其编码格式转换为字节数组，然后在将字节数组转为Base64串。其实现过程wiki有一个非常直观的表格，如下图</p>
-<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160314135213.png" alt="" title="Base64转换过程"></p>
+<p><img src="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E6%88%AA%E5%9B%BE20160314135213.png" alt="" title="Base64转换过程"></p>
 <p>这里注意一点就是字母<code>M</code>在ASCII编码中占一个字节，但是如果在其他编码中不一定是一个字节，所以在转码过程中一定要注意到文本编码的问题，不同编码格式的文本转换出的Base64串也很可能不同</p>
 <p>另外，无论是单字节编码还是双字节编码的文本，都会面临一个问题，即一个字节占8比特，8的倍数不能全被6整除，假设上面wiki的例子中只转换字母<code>M</code>（ASCII编码下），<em>M</em>的八位比特位分别是<em>01001101</em>，如果转换Base64的话，前面的<em>010011</em>可以转换为<em>T</em>，但是后面剩下<em>01</em>不足6位，这时候规定是不足6位比特时在后面补<em>0</em>，01后面补4个0就变成<em>010000</em>，对应Base64编码中的<code>Q</code>，但是因为你是补位后的转换，为了和正常的转换进行区分，需要在最后加入一个或两个<code>=</code></p>
 <p><strong>即：</strong><br>补了4个0的情况，末尾加2个<code>=</code><br>补了2个0的情况，末尾加1个<code>=</code><br>所以刚才的字母<code>M</code>（ASCII编码下）转为Base64时会变为<code>TQ==</code> </p>
 <p>顺便引用一下wiki对于补位的解释和示例</p>
-<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160314143830.png" alt=""></p>
+<p><img src="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E6%88%AA%E5%9B%BE20160314143830.png" alt=""></p>
 <h2 id="NET环境下的转码问题"><a href="#NET环境下的转码问题" class="headerlink" title=".NET环境下的转码问题"></a>.NET环境下的转码问题</h2><p>.NET中的Convert类已经封装好了Base64与字节数组的转换方法，分别是<br>Convert.ToBase64String(byte[] inArray)和Convert.FromBase64String(string s)</p>
 <p>.NET中还有一个将字符串转为字节数组的方法叫做Encoding.[编码集].GetBytes(string s)。我之前不理解Base64，不清楚这两个转换方法有什么区别。从.NET的注释来看GetBytes是<code>在派生类中重写时，将指定字符串中的所有字符编码为一个字节序列</code>,而FromBase64String是<code>将指定的字符串（它将二进制数据编码为 Base64 数字）转换为等效的 8 位无符号整数数组</code>，为了明确二者联系，我做了一个实验如下：</p>
-<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E6%88%AA%E5%9B%BE20160314105920.png" alt=""></p>
+<p><img src="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E6%88%AA%E5%9B%BE20160314105920.png" alt=""></p>
 <p>我先讲字符串按照UTF-8和Unicode编码转为字节数组，然后转为Base64，可以看出二者是不同的，然后在按照Base64格式、UTF-8格式和Unicode格式解析为字节数组，最后再把4个字节数组按照UTF-8和Unicode转为字符串，最后生成了8组字符串。</p>
 <p>最终成功还原的是rst1和rst4，可以看出这两个其实走的同一个路线，即</p>
 <p>Encoding.[编码集].GetBytes() -&gt; Convert.ToBase64String -&gt; Convert.FromBase64String -&gt; Encoding.[相同编码集].GetString</p>
@@ -500,7 +500,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg"
+                src="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg"
                 alt="cfmy" />
             
               <p class="site-author-name" itemprop="name">cfmy</p>

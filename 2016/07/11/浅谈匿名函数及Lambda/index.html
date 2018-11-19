@@ -62,7 +62,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="http://7xr9ql.com1.z0.glb.clouddn.com/444.png?v=5.1.4" color="#222">
+  <link rel="mask-icon" href="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/444.png?v=5.1.4" color="#222">
 
 
 
@@ -89,13 +89,13 @@
 <meta property="og:site_name" content="橙风沐雨&#39;s">
 <meta property="og:description" content="匿名对象初始化方法123456789101112var obj = new &amp;#123; Name = &quot;cfmy&quot;,Sex = &quot;M&quot;&amp;#125; ;//单个匿名对象  var objs = new[]   &amp;#123;       new &amp;#123; Name = &quot;cfmy1&quot;, Sex = &quot;M&quot; &amp;#125;,       new &amp;#123; Name = &quot;cfmy2&quot;, Sex">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/6-1.png">
-<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/6-2.png">
-<meta property="og:updated_time" content="2018-04-11T08:40:29.806Z">
+<meta property="og:image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/6-1.png">
+<meta property="og:image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/6-2.png">
+<meta property="og:updated_time" content="2018-11-19T14:50:34.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈匿名函数及Lambda">
 <meta name="twitter:description" content="匿名对象初始化方法123456789101112var obj = new &amp;#123; Name = &quot;cfmy&quot;,Sex = &quot;M&quot;&amp;#125; ;//单个匿名对象  var objs = new[]   &amp;#123;       new &amp;#123; Name = &quot;cfmy1&quot;, Sex = &quot;M&quot; &amp;#125;,       new &amp;#123; Name = &quot;cfmy2&quot;, Sex">
-<meta name="twitter:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/6-1.png">
+<meta name="twitter:image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/6-1.png">
 
 
 
@@ -283,7 +283,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cfmy">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg">
+      <meta itemprop="image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -364,11 +364,11 @@
 <p>初始化一个匿名对象之后，编译器会生成一个运行时类型(System.RunTimeType)，它是受保护的，它会根据初始化时的属性顺序，数量，类型构造出一个看不到的类型，它的所有属性都是只读的，只能在实例化时赋值<br><a id="more"></a></p>
 <h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ol>
 <li>匿名对象只有属性，没有方法</li>
-<li>同一个程序集中，如果匿名对象的属性名称、顺序、数量完全相同，那么他们的类型(Type)也是相同的<br><img src="http://7xr9ql.com1.z0.glb.clouddn.com/6-1.png" alt=""></li>
+<li>同一个程序集中，如果匿名对象的属性名称、顺序、数量完全相同，那么他们的类型(Type)也是相同的<br><img src="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/6-1.png" alt=""></li>
 </ol>
 <h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ol>
 <li>当你想创建一个只用一次的对象，只想用的属性，而不用其方法</li>
-<li>上一点的具体化：你的数据源A、B、C三个字段，如果现在你在和另一方进行数据对接，他们需要要A、D两个字段，D是由B和C进行拼接或者某种逻辑处理而成，你现在需要快速创建出新的类型，但是这个类型在你们这个系统是无意义的，不想为其创建Class，那么匿名对象是你的不二选择<br><img src="http://7xr9ql.com1.z0.glb.clouddn.com/6-2.png" alt=""></li>
+<li>上一点的具体化：你的数据源A、B、C三个字段，如果现在你在和另一方进行数据对接，他们需要要A、D两个字段，D是由B和C进行拼接或者某种逻辑处理而成，你现在需要快速创建出新的类型，但是这个类型在你们这个系统是无意义的，不想为其创建Class，那么匿名对象是你的不二选择<br><img src="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/6-2.png" alt=""></li>
 </ol>
 <h2 id="匿名函数和Lambda表达式"><a href="#匿名函数和Lambda表达式" class="headerlink" title="匿名函数和Lambda表达式"></a>匿名函数和Lambda表达式</h2><p>了解匿名函数和Lambda表达式前首先需要按顺序了解如下概念</p>
 <p>方法=》委托=》匿名委托=》匿名函数=》Lambda表达式</p>
@@ -631,7 +631,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg"
+                src="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg"
                 alt="cfmy" />
             
               <p class="site-author-name" itemprop="name">cfmy</p>

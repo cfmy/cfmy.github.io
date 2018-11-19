@@ -62,7 +62,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
 
 
-  <link rel="mask-icon" href="http://7xr9ql.com1.z0.glb.clouddn.com/444.png?v=5.1.4" color="#222">
+  <link rel="mask-icon" href="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/444.png?v=5.1.4" color="#222">
 
 
 
@@ -89,14 +89,14 @@
 <meta property="og:site_name" content="橙风沐雨&#39;s">
 <meta property="og:description" content="创建型模型 创建型模型抽象了实例化过程，它们帮助一个系统独立于如何创建、组合和表示它的那些对象。类创建型模型使用继承改变实例化的类，而对象创建模型将实例化委托给另一个对象 在这些模式中有两个不断出现的主旋律。第一，他们都将关于该系统使用哪些具体的类的信息封装起来。第二，他们隐藏了这些类的示例是如何被创建和放在一起的。整个系统关于这些对象所知道的是有抽象类所定义的接口。因为，创建型模式在什么地方被创">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png">
-<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F3%20%282%29.png">
-<meta property="og:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F3%20%283%29.png">
-<meta property="og:updated_time" content="2018-04-11T08:40:29.813Z">
+<meta property="og:image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F3%20%282%29.png">
+<meta property="og:image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F3%20%283%29.png">
+<meta property="og:updated_time" content="2018-11-19T14:50:34.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈工厂模式">
 <meta name="twitter:description" content="创建型模型 创建型模型抽象了实例化过程，它们帮助一个系统独立于如何创建、组合和表示它的那些对象。类创建型模型使用继承改变实例化的类，而对象创建模型将实例化委托给另一个对象 在这些模式中有两个不断出现的主旋律。第一，他们都将关于该系统使用哪些具体的类的信息封装起来。第二，他们隐藏了这些类的示例是如何被创建和放在一起的。整个系统关于这些对象所知道的是有抽象类所定义的接口。因为，创建型模式在什么地方被创">
-<meta name="twitter:image" content="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png">
+<meta name="twitter:image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png">
 
 
 
@@ -284,7 +284,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cfmy">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg">
+      <meta itemprop="image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -377,7 +377,7 @@
 <p>本篇主要介绍工厂方法和抽象工厂，以下通过demo演示从<br>没有模式-&gt;简单工厂-&gt;工厂方法-&gt;抽象工厂 的过程</p>
 <h2 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h2><p>假设你是一个农夫，你开垦了一块土地并准备大展身手，你打算先随便种点东西试一试土地合不合格，于是播撒下不知名野种，不久后长出了各式各样野果，这个过程中没有用到任何模式，落实到代码中就是<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">YG yeguo = <span class="keyword">new</span> YG();<span class="comment">//野果</span></span><br><span class="line">yeguo.bozhong();<span class="comment">//播种</span></span><br><span class="line">yeguo.jiaoshui();<span class="comment">//浇水</span></span><br><span class="line">yeguo.shouhuo();<span class="comment">//收获</span></span><br></pre></td></tr></table></figure></p>
 <p>检验过土地之后，你准备开始正式种地了，目前的情况是你只有这一小块地，他一次只能种一类种子；种子可以买，但是并不是所有种子都是一个季度种植的。所以你打算根据季度来种下不同的种子，获得不同的产物（这里不考虑收获周期）。我们假设你打算春季种植大葱，秋季种植油菜，UML图如下</p>
-<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png" alt=""></p>
+<p><img src="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.png" alt=""></p>
 <p>这时候种植代码大致如下所示</p>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Product product ;<span class="comment">//农作物</span></span><br><span class="line"><span class="keyword">switch</span>(Season)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">case</span> Spring:</span><br><span class="line">		product = Shallot();<span class="comment">//大葱</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> Fall:</span><br><span class="line">		product = Rape();<span class="comment">//油菜</span></span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> Exception();</span><br><span class="line">&#125;</span><br><span class="line">product.bozhong();<span class="comment">//播种</span></span><br><span class="line">product.jiaoshui();<span class="comment">//浇水</span></span><br><span class="line">product.shouhuo();<span class="comment">//收获</span></span><br></pre></td></tr></table></figure>
 <p>我们假设把实例化农作物那部分代码封装到一个类<code>Factory</code>里面，这个类返回一个<code>Product</code>实例，那么即是<strong>简单工厂</strong></p>
@@ -396,11 +396,11 @@
 <li>工厂类内部根据某个配置项或某个变量值，以此反射   </li>
 </ol>
 <h2 id="工厂方法"><a href="#工厂方法" class="headerlink" title="工厂方法"></a>工厂方法</h2><p>在简单工厂模式下，你在一块土地上种植了大葱、油菜、花生、玉米等等农作物，工厂类总是能帮你实例出各种应季农作物，你只要做好自己的工作（播种，浇水，收获），如此就够了。随着时间的流逝，你膨胀了，你觉得自己应该扩张一块地，用来种植一些经济作物，比如水果、烟草。但是简单工厂模式下无法满足这个扩展，因为工厂类只有一个，那么我们尝试把工厂类抽象化，再把农作物和经济作物抽象为作物，UML图如下</p>
-<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F3%20%282%29.png" alt=""></p>
+<p><img src="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F3%20%282%29.png" alt=""></p>
 <p>图中的土地和工厂统一为一个类，不做区分。这时候Client不单单是简单的调用工厂的<code>CreatePruduct</code>获取实例了，因为首先需要先选择一个工厂子类（土地A或土地B），这种情况下如果在新增一个作物类型，也只需要新增一个工厂类和对应的作物类就可以，这个时候你的注意力比以前高了一个维度，之前你关注土地种出的具体作物是萝卜还是油菜，现在只需要关注它是农作物还是经济作物就可以，至于具体农作物种植什么，可以在农作物中通过简单工厂方法实现</p>
 <h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><p>随着时光的流逝，你的工厂和土地已经扩充到了960万平方公里，地球上能中的东西都被你种了一个遍，收获的作物可以到地球三十圈，这时候你突然发现了转基因这个概念，你将继续扩充土地，支持转基因作物</p>
 <p>这时UML图变成下图</p>
-<p><img src="http://7xr9ql.com1.z0.glb.clouddn.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F3%20%283%29.png" alt=""></p>
+<p><img src="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F3%20%283%29.png" alt=""></p>
 <p>这时你可以在转基因和非转基因这个增面进行扩张，而作物类别已经无法进行扩张了，因为你个抽象工厂已经确定了只能生产农作物和经济作物</p>
 <h2 id="适用性"><a href="#适用性" class="headerlink" title="适用性"></a>适用性</h2><ul>
 <li>一个系统要独立于它的产品的创建、组合和表示时</li>
@@ -535,7 +535,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="http://7xr9ql.com1.z0.glb.clouddn.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg"
+                src="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg"
                 alt="cfmy" />
             
               <p class="site-author-name" itemprop="name">cfmy</p>
