@@ -274,6 +274,131 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/11/浅谈匿名函数及Lambda/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cfmy">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="橙风沐雨's">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/07/11/浅谈匿名函数及Lambda/" itemprop="url">浅谈匿名函数及Lambda</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-11T22:22:03+08:00">
+                2016-07-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="匿名对象"><a href="#匿名对象" class="headerlink" title="匿名对象"></a>匿名对象</h2><h3 id="初始化方法"><a href="#初始化方法" class="headerlink" title="初始化方法"></a>初始化方法</h3><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy"</span>,Sex = <span class="string">"M"</span>&#125; ;<span class="comment">//单个匿名对象  </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> objs = <span class="keyword">new</span>[]</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy1"</span>, Sex = <span class="string">"M"</span> &#125;,</span><br><span class="line">       <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy2"</span>, Sex = <span class="string">"M"</span> &#125;,</span><br><span class="line">       <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy3"</span>, Sex = <span class="string">"M"</span> &#125;,</span><br><span class="line">       <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy4"</span>, Sex = <span class="string">"M"</span> &#125;,</span><br><span class="line">       <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy5"</span>, Sex = <span class="string">"M"</span> &#125;</span><br><span class="line">   &#125;;<span class="comment">//匿名对象数组；注意 属性顺序，数量，类型都必须一致，否则提示找不到隐式数组的最佳类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> objCobj = <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy"</span>, self = <span class="keyword">new</span> &#123; Name = <span class="string">"cfmy"</span> &#125; &#125;; <span class="comment">//嵌套匿名对象</span></span><br></pre></td></tr></table></figure>
+<p>初始化一个匿名对象之后，编译器会生成一个运行时类型(System.RunTimeType)，它是受保护的，它会根据初始化时的属性顺序，数量，类型构造出一个看不到的类型，它的所有属性都是只读的，只能在实例化时赋值<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/07/11/浅谈匿名函数及Lambda/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/24/浅谈工厂模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -771,134 +896,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/14/浅谈Base64转码/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="cfmy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://cfmyhome-1256032936.cos.ap-shanghai.myqcloud.com/QQ%E5%9B%BE%E7%89%8720180223155939.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="橙风沐雨's">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/03/14/浅谈Base64转码/" itemprop="url">浅谈Base64转码</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-14T16:40:40+08:00">
-                2016-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>首先要理解Base64是一种二进制数据的表示方法，它只是一种表达形式，并不是加密，也不是压缩字符长度。惯例引用wiki概述：</p>
-<blockquote>
-<p>Base64是一种基于64个可打印字符来表示二进制数据的表示方法。由于2的6次方等于64，所以每6个比特为一个单元，对应某个可打印字符。三个字节有24个比特，对应于4个Base64单元，即3个字节需要用4个可打印字符来表示。它可用来作为电子邮件的传输编码。在Base64中的可打印字符包括字母A-Z、a-z、数字0-9，这样共有62个字符，此外两个可打印符号在不同的系统中而不同。一些如uuencode的其他编码方法，和之后binhex的版本使用不同的64字符集来代表6个二进制数字，但是它们不叫Base64。</p>
-<p>Base64常用于在通常处理文本数据的场合，表示、传输、存储一些二进制数据。包括MIME的email、在XML中存储复杂数据。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/03/14/浅谈Base64转码/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -953,7 +950,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
